@@ -55,10 +55,13 @@ void ServiceCodeRender::GenerateServiceHpp(SyntaxTree *stree, FILE *write) {
     fprintf(write, "#pragma once\n");
     fprintf(write, "\n");
 
+    fprintf(write, "#include <google/protobuf/wrappers.pb.h>\n");
+    fprintf(write, "\n");
+
     name_render_.GetMessageFileName(stree->GetProtoFile(), file_name, sizeof(file_name));
     fprintf(write, "#include \"%s.h\"\n", file_name);
 
-    fprintf(write, "\n");
+    fprintf(write, "\n"); 
     fprintf(write, "\n");
 
     char service_name[128]{'\0'};
