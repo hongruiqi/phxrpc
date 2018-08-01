@@ -57,6 +57,9 @@ void ClientCodeRender::GenerateStubHpp(SyntaxTree *stree, FILE *write) {
 
     fprintf(write, "#pragma once\n");
 
+    fprintf(write, "#include <google/protobuf/wrappers.pb.h>\n");
+    fprintf(write, "\n");
+
     fprintf(write, "\n");
 
     name_render_.GetMessageFileName(stree->GetProtoFile(), file_name, sizeof(file_name));
