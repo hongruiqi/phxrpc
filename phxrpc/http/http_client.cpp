@@ -103,4 +103,19 @@ int HttpClient::Head(BaseTcpStream & socket, const HttpRequest & req, HttpRespon
     return socket_ret;
 }
 
+int HttpClient::Delete(BaseTcpStream & socket, const HttpRequest & req, HttpResponse * resp ) {
+    int socket_ret = HttpProto::SendReqHeader(socket, "DELETE", req);
+
+    if (socket_ret == 0) {
+        socket_ret = HttpProto::RecvRespStartLine(socket, resp);
+        if (socket_ret == 0)
+            socket_ret = HttpProto::RecvHeaders(socket, resp);
+        if (socket_ret == 0 && SC_NOT_MODIFIED != resp->GetStatusCode()) {
+            socket_ret = HttpProto::RecvBody(socket, resp);
+        }
+    }
+
+    return socket_ret;
+}
+
 }

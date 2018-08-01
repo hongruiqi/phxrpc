@@ -58,6 +58,8 @@ class HttpClient {
     // @return true : socket ok, false : socket error
     static int Head(BaseTcpStream &socket, const HttpRequest &req, HttpResponse *resp);
 
+    // @return true : socket ok, false : socket error
+    static int Delete(BaseTcpStream &socket, const HttpRequest &req, HttpResponse *resp);
   private:
     HttpClient();
 };
